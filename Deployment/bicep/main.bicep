@@ -23,15 +23,15 @@ var baseUrl = 'https://raw.githubusercontent.com/brittneek/graphrag-deployment/m
 
 
 
-// ========== Managed Identity ========== //
-module managedIdentityModule 'deploy_managed_identity.bicep' = {
-  name: 'deploy_managed_identity'
-  params: {
-    solutionName: solutionPrefix
-    solutionLocation: solutionLocation
-  }
-  scope: resourceGroup(resourceGroup().name)
-}
+// // ========== Managed Identity ========== //
+// module managedIdentityModule 'deploy_managed_identity.bicep' = {
+//   name: 'deploy_managed_identity'
+//   params: {
+//     solutionName: solutionPrefix
+//     solutionLocation: solutionLocation
+//   }
+//   scope: resourceGroup(resourceGroup().name)
+// }
 
 // module cosmosDBModule 'deploy_cosmos_db.bicep' = {
 //   name: 'deploy_cosmos_db'
@@ -44,16 +44,16 @@ module managedIdentityModule 'deploy_managed_identity.bicep' = {
 // }
 
 
-// ========== Storage Account Module ========== //
-module storageAccountModule 'deploy_storage_account.bicep' = {
-  name: 'deploy_storage_account'
-  params: {
-    solutionName: solutionPrefix
-    solutionLocation: solutionLocation
-    managedIdentityObjectId:managedIdentityModule.outputs.managedIdentityOutput.objectId
-  }
-  scope: resourceGroup(resourceGroup().name)
-}
+// // ========== Storage Account Module ========== //
+// module storageAccountModule 'deploy_storage_account.bicep' = {
+//   name: 'deploy_storage_account'
+//   params: {
+//     solutionName: solutionPrefix
+//     solutionLocation: solutionLocation
+//     managedIdentityObjectId:managedIdentityModule.outputs.managedIdentityOutput.objectId
+//   }
+//   scope: resourceGroup(resourceGroup().name)
+// }
 
 // //========== SQL DB Module ========== //
 // module sqlDBModule 'deploy_sql_db.bicep' = {
@@ -96,11 +96,11 @@ module storageAccountModule 'deploy_storage_account.bicep' = {
 module uploadFiles 'deploy_upload_files_script.bicep' = {
   name : 'deploy_upload_files_script'
   params:{
-    storageAccountName:storageAccountModule.outputs.storageAccountOutput.name
-    solutionLocation: solutionLocation
-    containerName:storageAccountModule.outputs.storageAccountOutput.dataContainer
-    identity:managedIdentityModule.outputs.managedIdentityOutput.id
-    storageAccountKey:storageAccountModule.outputs.storageAccountOutput.key
+    storageAccountName: 'test' //storageAccountModule.outputs.storageAccountOutput.name
+    solutionLocation: 'test' //solutionLocation
+    containerName: 'test' //storageAccountModule.outputs.storageAccountOutput.dataContainer
+    identity: 'test' //managedIdentityModule.outputs.managedIdentityOutput.id
+    storageAccountKey: 'test' //storageAccountModule.outputs.storageAccountOutput.key
     azureOpenAIApiKey: 'test' //azOpenAI.outputs.openAIOutput.openAPIKey
     azureOpenAIEndpoint: 'test' //azOpenAI.outputs.openAIOutput.openAPIEndpoint
     azureSearchAdminKey: 'test' //azSearchService.outputs.searchServiceOutput.searchServiceAdminKey
