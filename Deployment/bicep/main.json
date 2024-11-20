@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.31.92.45157",
-      "templateHash": "9001866427685233990"
+      "templateHash": "17459326199242971839"
     }
   },
   "parameters": {
@@ -28,7 +28,7 @@
     "resourceGroupLocation": "[resourceGroup().location]",
     "resourceGroupName": "[resourceGroup().name]",
     "solutionLocation": "[variables('resourceGroupLocation')]",
-    "baseUrl": "https://raw.githubusercontent.com/nchandhi/nckmdeployment/main/"
+    "baseUrl": "https://raw.githubusercontent.com/brittneek/graphrag-deployment/main/"
   },
   "resources": [
     {

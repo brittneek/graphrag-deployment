@@ -18,7 +18,7 @@ var resourceGroupName = resourceGroup().name
 
 var solutionLocation = resourceGroupLocation
 // var baseUrl = 'https://raw.githubusercontent.com/microsoft/Build-your-own-copilot-Solution-Accelerator/main/ClientAdvisor/'
-var baseUrl = 'https://raw.githubusercontent.com/nchandhi/nckmdeployment/main/'
+var baseUrl = 'https://raw.githubusercontent.com/brittneek/graphrag-deployment/main/'
 
 
 
