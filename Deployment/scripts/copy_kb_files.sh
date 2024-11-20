@@ -51,61 +51,57 @@ graphragfileSystem="graphrag"
 # Define variables
 VENV_DIR="venv"  # Virtual environment directory name
 REQUIREMENTS_FILE="graphrag-requirements.txt"  # Requirements file
-PYTHON_VERSION="python3"  # Python version (modify if needed)
+PYTHON_VERSION="python3.10"  # Python version
 
+echo "Setting up a Python 3.10 virtual environment..."
 
-echo "Creating a Python virtual environment for Azure deployment..."
-
-# Check if Python is installed
+# Check if Python 3.10 is installed
 if ! command -v $PYTHON_VERSION &> /dev/null; then
-    echo "Error: $PYTHON_VERSION is not installed. Please install it and try again."
-    exit 1
+    echo "Python 3.10 not found. Installing..."
+    sudo apt update
+    sudo apt install -y software-properties-common
+    sudo add-apt-repository -y ppa:deadsnakes/ppa
+    sudo apt update
+    sudo apt install -y python3.10 python3.10-venv python3.10-distutils
+
+    if ! command -v $PYTHON_VERSION &> /dev/null; then
+        echo "Error: Python 3.10 installation failed."
+        exit 1
+    fi
+    echo "Python 3.10 installed successfully."
 fi
 
-# Create virtual environment
+# Create virtual environment with Python 3.10
 if [ ! -d "$VENV_DIR" ]; then
     echo "Creating virtual environment in $VENV_DIR..."
-    $PYTHON_VERSION -m venv $VENV_DIR
+    $PYTHON_VERSION -m venv $VENV_DIR --copies
     echo "Virtual environment created successfully."
 else
     echo "Virtual environment already exists. Skipping creation."
 fi
 
-
 # Activate the virtual environment
 echo "Activating the virtual environment..."
 source $VENV_DIR/bin/activate
 
-# Check if activation was successful
 if [ $? -ne 0 ]; then
     echo "Error: Unable to activate virtual environment."
     exit 1
 fi
-
 echo "Virtual environment activated."
 
-# Install dependencies
+# Install pip and dependencies
+echo "Installing pip..."
+curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10
+echo "Installing dependencies from $REQUIREMENTS_FILE..."
+pip install --upgrade pip
 if [ -f "$REQUIREMENTS_FILE" ]; then
-    echo "Installing dependencies from $REQUIREMENTS_FILE..."
-    pip install --upgrade pip
     pip install -r $REQUIREMENTS_FILE
-
-    if [ $? -eq 0 ]; then
-        echo "Dependencies installed successfully."
-    else
-        echo "Error: Failed to install dependencies."
-        deactivate
-        exit 1
-    fi
-else
-    echo "Warning: $REQUIREMENTS_FILE not found. No dependencies were installed."
 fi
 
 # Deactivate the virtual environment
-echo "Deactivating the virtual environment..."
 deactivate
-
-echo "Python virtual environment setup for Azure deployment is complete."
+echo "Python 3.10 virtual environment setup complete."
 
 # requirementFile="graphrag-requirements.txt"
 # requirementFileUrl=${baseUrl}"Deployment/scripts/graphrag-requirements.txt"
