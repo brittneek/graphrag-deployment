@@ -1,18 +1,18 @@
 @description('Specifies the location for resources.')
 param solutionLocation string 
-@secure()
-param storageAccountKey string
+// @secure()
+// param storageAccountKey string
 
-param storageAccountName string
+// param storageAccountName string
 
-param containerName string
+// param containerName string
 param identity string
 param baseUrl string
 
-param azureOpenAIApiKey string
-param azureOpenAIEndpoint string
-param azureSearchAdminKey string
-param azureSearchServiceEndpoint string
+// param azureOpenAIApiKey string
+// param azureOpenAIEndpoint string
+// param azureSearchAdminKey string
+// param azureSearchServiceEndpoint string
 
 
 resource copy_demo_Data 'Microsoft.Resources/deploymentScripts@2020-10-01' = {
@@ -28,7 +28,7 @@ resource copy_demo_Data 'Microsoft.Resources/deploymentScripts@2020-10-01' = {
   properties: {
     azCliVersion: '2.52.0'
     primaryScriptUri: '${baseUrl}Deployment/scripts/copy_kb_files.sh' // deploy-azure-synapse-pipelines.sh
-    arguments: '${storageAccountName} ${containerName} ${storageAccountKey} ${baseUrl} ${azureOpenAIApiKey} ${azureOpenAIEndpoint} ${azureSearchAdminKey} ${azureSearchServiceEndpoint}' // Specify any arguments for the script
+    //arguments: '${storageAccountName} ${containerName} ${storageAccountKey} ${baseUrl} ${azureOpenAIApiKey} ${azureOpenAIEndpoint} ${azureSearchAdminKey} ${azureSearchServiceEndpoint}' // Specify any arguments for the script
     timeout: 'PT1H' // Specify the desired timeout duration
     retentionInterval: 'PT1H' // Specify the desired retention interval
     cleanupPreference:'OnSuccess'

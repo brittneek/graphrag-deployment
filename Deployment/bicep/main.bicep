@@ -23,15 +23,15 @@ var baseUrl = 'https://raw.githubusercontent.com/brittneek/graphrag-deployment/m
 
 
 
-// // ========== Managed Identity ========== //
-// module managedIdentityModule 'deploy_managed_identity.bicep' = {
-//   name: 'deploy_managed_identity'
-//   params: {
-//     solutionName: solutionPrefix
-//     solutionLocation: solutionLocation
-//   }
-//   scope: resourceGroup(resourceGroup().name)
-// }
+// ========== Managed Identity ========== //
+module managedIdentityModule 'deploy_managed_identity.bicep' = {
+  name: 'deploy_managed_identity'
+  params: {
+    solutionName: solutionPrefix
+    solutionLocation: solutionLocation
+  }
+  scope: resourceGroup(resourceGroup().name)
+}
 
 // module cosmosDBModule 'deploy_cosmos_db.bicep' = {
 //   name: 'deploy_cosmos_db'
@@ -96,15 +96,15 @@ var baseUrl = 'https://raw.githubusercontent.com/brittneek/graphrag-deployment/m
 module uploadFiles 'deploy_upload_files_script.bicep' = {
   name : 'deploy_upload_files_script'
   params:{
-    storageAccountName: 'test' //storageAccountModule.outputs.storageAccountOutput.name
+    //storageAccountName: 'test' //storageAccountModule.outputs.storageAccountOutput.name
     solutionLocation: solutionLocation
-    containerName: 'test' //storageAccountModule.outputs.storageAccountOutput.dataContainer
-    identity: 'test' //managedIdentityModule.outputs.managedIdentityOutput.id
-    storageAccountKey: 'test' //storageAccountModule.outputs.storageAccountOutput.key
-    azureOpenAIApiKey: 'test' //azOpenAI.outputs.openAIOutput.openAPIKey
-    azureOpenAIEndpoint: 'test' //azOpenAI.outputs.openAIOutput.openAPIEndpoint
-    azureSearchAdminKey: 'test' //azSearchService.outputs.searchServiceOutput.searchServiceAdminKey
-    azureSearchServiceEndpoint: 'test' //azSearchService.outputs.searchServiceOutput.searchServiceEndpoint
+    //containerName: 'test' //storageAccountModule.outputs.storageAccountOutput.dataContainer
+    identity: managedIdentityModule.outputs.managedIdentityOutput.id
+    //storageAccountKey: 'test' //storageAccountModule.outputs.storageAccountOutput.key
+    //azureOpenAIApiKey: 'test' //azOpenAI.outputs.openAIOutput.openAPIKey
+    //azureOpenAIEndpoint: 'test' //azOpenAI.outputs.openAIOutput.openAPIEndpoint
+    //azureSearchAdminKey: 'test' //azSearchService.outputs.searchServiceOutput.searchServiceAdminKey
+    //azureSearchServiceEndpoint: 'test' //azSearchService.outputs.searchServiceOutput.searchServiceEndpoint
     baseUrl:baseUrl
   }
   //dependsOn:[storageAccountModule,azSearchService,azOpenAI]
