@@ -97,7 +97,7 @@ module uploadFiles 'deploy_upload_files_script.bicep' = {
   name : 'deploy_upload_files_script'
   params:{
     storageAccountName: 'test' //storageAccountModule.outputs.storageAccountOutput.name
-    solutionLocation: 'test' //solutionLocation
+    solutionLocation: solutionLocation
     containerName: 'test' //storageAccountModule.outputs.storageAccountOutput.dataContainer
     identity: 'test' //managedIdentityModule.outputs.managedIdentityOutput.id
     storageAccountKey: 'test' //storageAccountModule.outputs.storageAccountOutput.key
