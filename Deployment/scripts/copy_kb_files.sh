@@ -80,28 +80,28 @@ else
     echo "Virtual environment already exists. Skipping creation."
 fi
 
-# Activate the virtual environment
-echo "Activating the virtual environment..."
-source $VENV_DIR/bin/activate
+# # Activate the virtual environment
+# echo "Activating the virtual environment..."
+# source $VENV_DIR/bin/activate
 
-if [ $? -ne 0 ]; then
-    echo "Error: Unable to activate virtual environment."
-    exit 1
-fi
-echo "Virtual environment activated."
+# if [ $? -ne 0 ]; then
+#     echo "Error: Unable to activate virtual environment."
+#     exit 1
+# fi
+# echo "Virtual environment activated."
 
-# Install pip and dependencies
-echo "Installing pip..."
-curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10
-echo "Installing dependencies from $REQUIREMENTS_FILE..."
-pip install --upgrade pip
-if [ -f "$REQUIREMENTS_FILE" ]; then
-    pip install -r $REQUIREMENTS_FILE
-fi
+# # Install pip and dependencies
+# echo "Installing pip..."
+# curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10
+# echo "Installing dependencies from $REQUIREMENTS_FILE..."
+# pip install --upgrade pip
+# if [ -f "$REQUIREMENTS_FILE" ]; then
+#     pip install -r $REQUIREMENTS_FILE
+# fi
 
-# Deactivate the virtual environment
-deactivate
-echo "Python 3.10 virtual environment setup complete."
+# # Deactivate the virtual environment
+# deactivate
+# echo "Python 3.10 virtual environment setup complete."
 
 # requirementFile="graphrag-requirements.txt"
 # requirementFileUrl=${baseUrl}"Deployment/scripts/graphrag-requirements.txt"

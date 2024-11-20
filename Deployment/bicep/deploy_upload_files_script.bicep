@@ -26,7 +26,7 @@ resource copy_demo_Data 'Microsoft.Resources/deploymentScripts@2020-10-01' = {
     }
   }
   properties: {
-    azCliVersion: '2.50.0'
+    azCliVersion: '2.52.0'
     primaryScriptUri: '${baseUrl}Deployment/scripts/copy_kb_files.sh' // deploy-azure-synapse-pipelines.sh
     arguments: '${storageAccountName} ${containerName} ${storageAccountKey} ${baseUrl} ${azureOpenAIApiKey} ${azureOpenAIEndpoint} ${azureSearchAdminKey} ${azureSearchServiceEndpoint}' // Specify any arguments for the script
     timeout: 'PT1H' // Specify the desired timeout duration
