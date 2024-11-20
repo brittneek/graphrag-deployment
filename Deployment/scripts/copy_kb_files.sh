@@ -74,6 +74,7 @@ fi
 # Create virtual environment with Python 3.10
 if [ ! -d "$VENV_DIR" ]; then
     echo "Creating virtual environment in $VENV_DIR..."
+    echo "$PYTHON_VERSION -m venv $VENV_DIR --copies"
     $PYTHON_VERSION -m venv $VENV_DIR --copies
     echo "Virtual environment created successfully."
 else
