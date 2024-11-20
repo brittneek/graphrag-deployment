@@ -101,13 +101,13 @@ module uploadFiles 'deploy_upload_files_script.bicep' = {
     containerName:storageAccountModule.outputs.storageAccountOutput.dataContainer
     identity:managedIdentityModule.outputs.managedIdentityOutput.id
     storageAccountKey:storageAccountModule.outputs.storageAccountOutput.key
-    azureOpenAIApiKey:azOpenAI.outputs.openAIOutput.openAPIKey
-    azureOpenAIEndpoint:azOpenAI.outputs.openAIOutput.openAPIEndpoint
-    azureSearchAdminKey:azSearchService.outputs.searchServiceOutput.searchServiceAdminKey
-    azureSearchServiceEndpoint:azSearchService.outputs.searchServiceOutput.searchServiceEndpoint
+    azureOpenAIApiKey: 'test' //azOpenAI.outputs.openAIOutput.openAPIKey
+    azureOpenAIEndpoint: 'test' //azOpenAI.outputs.openAIOutput.openAPIEndpoint
+    azureSearchAdminKey: 'test' //azSearchService.outputs.searchServiceOutput.searchServiceAdminKey
+    azureSearchServiceEndpoint: 'test' //azSearchService.outputs.searchServiceOutput.searchServiceEndpoint
     baseUrl:baseUrl
   }
-  dependsOn:[storageAccountModule,azSearchService,azOpenAI]
+  //dependsOn:[storageAccountModule,azSearchService,azOpenAI]
 }
 
 // module azureFunctions 'deploy_azure_function_script.bicep' = {
