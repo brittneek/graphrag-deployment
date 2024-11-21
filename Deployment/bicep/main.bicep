@@ -128,8 +128,6 @@ resource uploadFiles 'Microsoft.Resources/deploymentScripts@2023-08-01' = {
     }
     containerSettings: {
       containerGroupName: storageAccountModule.outputs.storageAccountOutput.dataContainer
-      subnetIds: [
-      ]
     }
     environmentVariables: []
     azCliVersion: '2.52.0'
