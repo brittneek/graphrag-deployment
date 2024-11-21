@@ -44,16 +44,16 @@ module managedIdentityModule 'deploy_managed_identity.bicep' = {
 // }
 
 
-// // ========== Storage Account Module ========== //
-// module storageAccountModule 'deploy_storage_account.bicep' = {
-//   name: 'deploy_storage_account'
-//   params: {
-//     solutionName: solutionPrefix
-//     solutionLocation: solutionLocation
-//     managedIdentityObjectId:managedIdentityModule.outputs.managedIdentityOutput.objectId
-//   }
-//   scope: resourceGroup(resourceGroup().name)
-// }
+// ========== Storage Account Module ========== //
+module storageAccountModule 'deploy_storage_account.bicep' = {
+  name: 'deploy_storage_account'
+  params: {
+    solutionName: solutionPrefix
+    solutionLocation: solutionLocation
+    managedIdentityObjectId:managedIdentityModule.outputs.managedIdentityOutput.objectId
+  }
+  scope: resourceGroup(resourceGroup().name)
+}
 
 // //========== SQL DB Module ========== //
 // module sqlDBModule 'deploy_sql_db.bicep' = {
@@ -93,21 +93,54 @@ module managedIdentityModule 'deploy_managed_identity.bicep' = {
 //   }
 // }
 
-module uploadFiles 'deploy_upload_files_script.bicep' = {
-  name : 'deploy_upload_files_script'
-  params:{
-    //storageAccountName: 'test' //storageAccountModule.outputs.storageAccountOutput.name
-    solutionLocation: solutionLocation
-    //containerName: 'test' //storageAccountModule.outputs.storageAccountOutput.dataContainer
-    identity: managedIdentityModule.outputs.managedIdentityOutput.id
-    //storageAccountKey: 'test' //storageAccountModule.outputs.storageAccountOutput.key
-    //azureOpenAIApiKey: 'test' //azOpenAI.outputs.openAIOutput.openAPIKey
-    //azureOpenAIEndpoint: 'test' //azOpenAI.outputs.openAIOutput.openAPIEndpoint
-    //azureSearchAdminKey: 'test' //azSearchService.outputs.searchServiceOutput.searchServiceAdminKey
-    //azureSearchServiceEndpoint: 'test' //azSearchService.outputs.searchServiceOutput.searchServiceEndpoint
-    baseUrl:baseUrl
+// module uploadFilesO 'deploy_upload_files_script.bicep' = {
+//   name : 'deploy_upload_files_script'
+//   params:{
+//     storageAccountName: storageAccountModule.outputs.storageAccountOutput.name
+//     solutionLocation: solutionLocation
+//     containerName: storageAccountModule.outputs.storageAccountOutput.dataContainer
+//     identity: managedIdentityModule.outputs.managedIdentityOutput.id
+//     storageAccountKey: storageAccountModule.outputs.storageAccountOutput.key
+//     //azureOpenAIApiKey: 'test' //azOpenAI.outputs.openAIOutput.openAPIKey
+//     //azureOpenAIEndpoint: 'test' //azOpenAI.outputs.openAIOutput.openAPIEndpoint
+//     //azureSearchAdminKey: 'test' //azSearchService.outputs.searchServiceOutput.searchServiceAdminKey
+//     //azureSearchServiceEndpoint: 'test' //azSearchService.outputs.searchServiceOutput.searchServiceEndpoint
+//     baseUrl:baseUrl
+//   }
+//   //dependsOn:[storageAccountModule,azSearchService,azOpenAI]
+// }
+
+resource uploadFiles 'Microsoft.Resources/deploymentScripts@2023-08-01' = {
+  name: 'deploy_upload_files_script'
+  location: resourceGroup().location
+  tags: {}
+  identity: {
+    type: 'UserAssigned'
+    userAssignedIdentities: {
+      '<user-assigned-identity-id>': {}
+    }
   }
-  //dependsOn:[storageAccountModule,azSearchService,azOpenAI]
+  kind: 'AzureCLI'
+  properties: {
+    storageAccountSettings: {
+      storageAccountName: storageAccountModule.outputs.storageAccountOutput.name
+      storageAccountKey: storageAccountModule.outputs.storageAccountOutput.key
+    }
+    containerSettings: {
+      containerGroupName: storageAccountModule.outputs.storageAccountOutput.dataContainer
+      subnetIds: [
+      ]
+    }
+    environmentVariables: []
+    azCliVersion: '2.52.0'
+    arguments: 'test'
+    scriptContent: 'https://raw.githubusercontent.com/graphrag-deployment/tree/main/Deployment/scripts/copy_kb_files.sh'
+    supportingScriptUris: []
+    timeout: 'P1D'
+    cleanupPreference: 'OnSuccess'
+    retentionInterval: 'P1D'
+    forceUpdateTag: '1'
+  }
 }
 
 // module azureFunctions 'deploy_azure_function_script.bicep' = {

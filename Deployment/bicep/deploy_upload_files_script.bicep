@@ -1,11 +1,11 @@
 @description('Specifies the location for resources.')
 param solutionLocation string 
-// @secure()
-// param storageAccountKey string
+@secure()
+param storageAccountKey string
 
-// param storageAccountName string
+param storageAccountName string
 
-// param containerName string
+param containerName string
 param identity string
 param baseUrl string
 
