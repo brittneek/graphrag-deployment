@@ -1,0 +1,85 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.31.92.45157",
+      "templateHash": "3711944221098564157"
+    }
+  },
+  "parameters": {
+    "location": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]",
+      "metadata": {
+        "description": "The location of the resources."
+      }
+    },
+    "storageAccountDataName": {
+      "type": "string",
+      "metadata": {
+        "description": "The storage account to list blobs from."
+      }
+    },
+    "storageAccountDataContainer": {
+      "type": "string"
+    }
+  },
+  "variables": {
+    "storageBlobDataReaderRoleId": "2a2b9908-6ea1-4ae2-8e65-a410df84e7d1"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
+      "apiVersion": "2023-07-31-preview",
+      "name": "script-identity",
+      "location": "[parameters('location')]",
+      "metadata": {
+        "description": "The user identity for the deployment script."
+      }
+    },
+    {
+      "type": "Microsoft.Authorization/roleAssignments",
+      "apiVersion": "2022-04-01",
+      "scope": "[format('Microsoft.Storage/storageAccounts/{0}', parameters('storageAccountDataName'))]",
+      "name": "[guid(subscriptionResourceId('Microsoft.Authorization/roleDefinitions', variables('storageBlobDataReaderRoleId')), resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', 'script-identity'), resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountDataName')))]",
+      "properties": {
+        "principalType": "ServicePrincipal",
+        "principalId": "[reference(resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', 'script-identity'), '2023-07-31-preview').principalId]",
+        "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', variables('storageBlobDataReaderRoleId'))]"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', 'script-identity')]"
+      ],
+      "metadata": {
+        "description": "Assign permission for the deployment scripts user identity access to the read blobs from the storage account."
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deploymentScripts",
+      "apiVersion": "2023-08-01",
+      "name": "script",
+      "location": "[parameters('location')]",
+      "kind": "AzureCLI",
+      "identity": {
+        "type": "UserAssigned",
+        "userAssignedIdentities": {
+          "[format('{0}', resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', 'script-identity'))]": {}
+        }
+      },
+      "properties": {
+        "azCliVersion": "2.59.0",
+        "retentionInterval": "PT1H",
+        "arguments": "[format('{0} {1}', reference(resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountDataName')), '2023-04-01').primaryEndpoints.blob, parameters('storageAccountDataContainer'))]",
+        "scriptContent": "      #!/bin/bash\r\n      # Define variables\r\n      VENV_DIR=\"venv\"  # Virtual environment directory name\r\n      REQUIREMENTS_FILE=\"graphrag-requirements.txt\"  # Requirements file\r\n      PYTHON_VERSION=\"python3.10\"  # Python version\r\n\r\n      echo \"Setting up a Python 3.10 virtual environment...\"\r\n\r\n      # Check if Python 3.10 is installed\r\n      if ! command -v $PYTHON_VERSION &> /dev/null; then\r\n          echo \"Python 3.10 not found. Installing...\"\r\n          sudo apt update\r\n          sudo apt install -y software-properties-common\r\n          sudo add-apt-repository -y ppa:deadsnakes/ppa\r\n          sudo apt update\r\n          sudo apt install -y python3.10 python3.10-venv python3.10-distutils\r\n\r\n          if ! command -v $PYTHON_VERSION &> /dev/null; then\r\n              echo \"Error: Python 3.10 installation failed.\"\r\n              exit 1\r\n          fi\r\n          echo \"Python 3.10 installed successfully.\"\r\n      fi\r\n\r\n      # Create virtual environment with Python 3.10\r\n      if [ ! -d \"$VENV_DIR\" ]; then\r\n          echo \"Creating virtual environment in $VENV_DIR...\"\r\n          echo \"$PYTHON_VERSION -m venv $VENV_DIR --copies\"\r\n          $PYTHON_VERSION -m venv $VENV_DIR --copies\r\n          echo \"Virtual environment created successfully.\"\r\n      else\r\n          echo \"Virtual environment already exists. Skipping creation.\"\r\n      fi\r\n\r\n      # Activate the virtual environment\r\n      echo \"Activating the virtual environment...\"\r\n      source $VENV_DIR/bin/activate\r\n    "
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', 'script-identity')]"
+      ],
+      "metadata": {
+        "description": "The deployment script."
+      }
+    }
+  ]
+}

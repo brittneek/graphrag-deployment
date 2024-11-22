@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.31.92.45157",
-      "templateHash": "5399597935866196185"
+      "templateHash": "15877091729249986742"
     }
   },
   "parameters": {
@@ -50,8 +50,7 @@
           "storageAccountKey": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, resourceGroup().name), 'Microsoft.Resources/deployments', 'deploy_storage_account'), '2022-09-01').outputs.storageAccountOutput.value.key]"
         },
         "containerSettings": {
-          "containerGroupName": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, resourceGroup().name), 'Microsoft.Resources/deployments', 'deploy_storage_account'), '2022-09-01').outputs.storageAccountOutput.value.dataContainer]",
-          "subnetIds": []
+          "containerGroupName": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, resourceGroup().name), 'Microsoft.Resources/deployments', 'deploy_storage_account'), '2022-09-01').outputs.storageAccountOutput.value.dataContainer]"
         },
         "environmentVariables": [],
         "azCliVersion": "2.52.0",

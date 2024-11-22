@@ -133,6 +133,7 @@ resource uploadFiles 'Microsoft.Resources/deploymentScripts@2023-08-01' = {
     azCliVersion: '2.52.0'
     arguments: 'test'
     scriptContent: 'https://raw.githubusercontent.com/graphrag-deployment/tree/main/Deployment/scripts/copy_kb_files.sh'
+    scriptContent: 'https://raw.githubusercontent.com/brittneek/graphrag-deployment/main/Deployment/scripts/copy_kb_files.sh'
     supportingScriptUris: []
     timeout: 'P1D'
     cleanupPreference: 'OnSuccess'
