@@ -93,54 +93,24 @@ module storageAccountModule 'deploy_storage_account.bicep' = {
 //   }
 // }
 
-// module uploadFilesO 'deploy_upload_files_script.bicep' = {
-//   name : 'deploy_upload_files_script'
-//   params:{
-//     storageAccountName: storageAccountModule.outputs.storageAccountOutput.name
-//     solutionLocation: solutionLocation
-//     containerName: storageAccountModule.outputs.storageAccountOutput.dataContainer
-//     identity: managedIdentityModule.outputs.managedIdentityOutput.id
-//     storageAccountKey: storageAccountModule.outputs.storageAccountOutput.key
-//     //azureOpenAIApiKey: 'test' //azOpenAI.outputs.openAIOutput.openAPIKey
-//     //azureOpenAIEndpoint: 'test' //azOpenAI.outputs.openAIOutput.openAPIEndpoint
-//     //azureSearchAdminKey: 'test' //azSearchService.outputs.searchServiceOutput.searchServiceAdminKey
-//     //azureSearchServiceEndpoint: 'test' //azSearchService.outputs.searchServiceOutput.searchServiceEndpoint
-//     baseUrl:baseUrl
-//   }
-//   //dependsOn:[storageAccountModule,azSearchService,azOpenAI]
-// }
-
-resource uploadFiles 'Microsoft.Resources/deploymentScripts@2023-08-01' = {
-  name: 'deploy_upload_files_script'
-  location: resourceGroup().location
-  tags: {}
-  identity: {
-    type: 'UserAssigned'
-    userAssignedIdentities: {
-      '<user-assigned-identity-id>': {}
-    }
+module uploadFilesO 'deploy_upload_files_script.bicep' = {
+  name : 'deploy_upload_files_script'
+  params:{
+    storageAccountName: storageAccountModule.outputs.storageAccountOutput.name
+    solutionLocation: solutionLocation
+    containerName: storageAccountModule.outputs.storageAccountOutput.dataContainer
+    identity: managedIdentityModule.outputs.managedIdentityOutput.id
+    storageAccountKey: storageAccountModule.outputs.storageAccountOutput.key
+    //azureOpenAIApiKey: 'test' //azOpenAI.outputs.openAIOutput.openAPIKey
+    //azureOpenAIEndpoint: 'test' //azOpenAI.outputs.openAIOutput.openAPIEndpoint
+    //azureSearchAdminKey: 'test' //azSearchService.outputs.searchServiceOutput.searchServiceAdminKey
+    //azureSearchServiceEndpoint: 'test' //azSearchService.outputs.searchServiceOutput.searchServiceEndpoint
+    baseUrl:baseUrl
   }
-  kind: 'AzureCLI'
-  properties: {
-    storageAccountSettings: {
-      storageAccountName: storageAccountModule.outputs.storageAccountOutput.name
-      storageAccountKey: storageAccountModule.outputs.storageAccountOutput.key
-    }
-    containerSettings: {
-      containerGroupName: storageAccountModule.outputs.storageAccountOutput.dataContainer
-    }
-    environmentVariables: []
-    azCliVersion: '2.52.0'
-    arguments: 'test'
-    scriptContent: 'https://raw.githubusercontent.com/graphrag-deployment/tree/main/Deployment/scripts/copy_kb_files.sh'
-    scriptContent: 'https://raw.githubusercontent.com/brittneek/graphrag-deployment/main/Deployment/scripts/copy_kb_files.sh'
-    supportingScriptUris: []
-    timeout: 'P1D'
-    cleanupPreference: 'OnSuccess'
-    retentionInterval: 'P1D'
-    forceUpdateTag: '1'
-  }
+  //dependsOn:[storageAccountModule,azSearchService,azOpenAI]
 }
+
+
 
 // module azureFunctions 'deploy_azure_function_script.bicep' = {
 //   name : 'deploy_azure_function_script'
