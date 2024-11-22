@@ -1,1 +1,2 @@
+lancedb==0.13.0
 graphrag==0.3.6
