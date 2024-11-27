@@ -83,10 +83,34 @@ resource copy_demo_Data1 'Microsoft.Resources/deploymentScripts@2023-08-01' = {
   }
   kind: 'AzureCLI'
   properties: {
-    azCliVersion: '2.40.0' // Ensure compatibility with your script
+    azCliVersion: '2.52.0' // Ensure compatibility with your script
     primaryScriptUri: '${baseUrl}Deployment/scripts/copy_kb_files.sh'
     timeout: 'PT1H'
     cleanupPreference: 'OnSuccess'
     retentionInterval: 'PT1H'
   }
 }
+
+
+// resource copy_demo_Data1 'Microsoft.Resources/deploymentScripts@2023-08-01' = {
+//   name: 'copy_demo_Data1'
+//   location: solutionLocation
+//   tags: {}
+//   identity: {
+//     type: 'UserAssigned'
+//     userAssignedIdentities: {
+//       '${identity}': {}
+//     }
+//   }
+//   kind: 'AzurePowerShell'
+//   properties: {
+//     azPowerShellVersion: '10.0'
+//     primaryScriptUri: '${baseUrl}Deployment/scripts/copy_kb_files.ps1'
+//     timeout: 'PT1H'
+//     cleanupPreference: 'OnSuccess'
+//     retentionInterval: 'PT1H'
+//     containerSettings: {
+//       osType: 'Windows'
+//     }
+//   }
+// }

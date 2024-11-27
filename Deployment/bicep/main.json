@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.31.92.45157",
-      "templateHash": "5809370102856084928"
+      "templateHash": "2135079882118016079"
     }
   },
   "parameters": {
@@ -326,7 +326,7 @@
             "_generator": {
               "name": "bicep",
               "version": "0.31.92.45157",
-              "templateHash": "13958214945466299126"
+              "templateHash": "6059919659074800222"
             }
           },
           "parameters": {
@@ -367,7 +367,7 @@
               },
               "kind": "AzureCLI",
               "properties": {
-                "azCliVersion": "2.40.0",
+                "azCliVersion": "2.52.0",
                 "primaryScriptUri": "[format('{0}Deployment/scripts/copy_kb_files.sh', parameters('baseUrl'))]",
                 "timeout": "PT1H",
                 "cleanupPreference": "OnSuccess",
