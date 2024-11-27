@@ -73,7 +73,7 @@ def building_index():
 
 def set_graphrag_config_values(settings):
 
-    key_vault_name = 'knowledge-mining-kv'
+    key_vault_name = 'kv_to-be-replaced' # 'knowledge-mining-kv'
 
     settings['llm']['api_key'] = get_secrets_from_kv(key_vault_name,'AZURE-OPENAI-API-KEY')
     settings['llm']['model'] = 'gpt-4o-mini' # just update the model name during deployment

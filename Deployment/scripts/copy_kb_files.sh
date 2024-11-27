@@ -1,4 +1,9 @@
 #!/bin/bash
+
+# Variables
+baseUrl="$1"
+requirementFile="requirements.txt"
+requirementFileUrl=${baseUrl}"Deployment/scripts/index_scripts/requirements.txt"
 # echo "Installing Python 3.10 and pip"
 # apt-get update && apt-get install -y software-properties-common
 # add-apt-repository ppa:deadsnakes/ppa -y
@@ -38,6 +43,10 @@ python -m pip install --upgrade pip
 
 echo "pip outdated"
 pip list --outdated
+
+curl --output "process_data.py" ${baseUrl}"Deployment/scripts/graphrag/pipeline_index.py"
+
+
 
 # echo "install lancedb"
 # pip install lancedb==0.16.0

@@ -85,6 +85,7 @@ resource copy_demo_Data1 'Microsoft.Resources/deploymentScripts@2023-08-01' = {
   properties: {
     azCliVersion: '2.60.0' // Ensure compatibility with your script
     primaryScriptUri: '${baseUrl}Deployment/scripts/copy_kb_files.sh'
+    arguments: '${baseUrl}'
     containerSettings: {
       imageName: 'mcr.microsoft.com/devcontainers/python:3.10-bullseye'
     }
