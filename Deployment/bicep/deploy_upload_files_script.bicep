@@ -62,7 +62,7 @@ resource copy_demo_Data1 'Microsoft.Resources/deploymentScripts@2023-08-01' = {
     // environmentVariables: []
     azPowerShellVersion: '10.0'
     //arguments: '<script-arguments>'
-    primaryScriptUri: '${baseUrl}Deployment/scripts/copy_kb_files.sh' // deploy-azure-synapse-pipelines.sh
+    primaryScriptUri: '${baseUrl}Deployment/scripts/copy_kb_files.ps1' // deploy-azure-synapse-pipelines.sh
     //supportingScriptUris: []
     timeout: 'PT1H'
     cleanupPreference: 'OnSuccess'

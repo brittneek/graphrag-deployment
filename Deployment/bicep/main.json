@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.31.92.45157",
-      "templateHash": "695344768202012320"
+      "templateHash": "7153773350379734038"
     }
   },
   "parameters": {
@@ -326,7 +326,7 @@
             "_generator": {
               "name": "bicep",
               "version": "0.31.92.45157",
-              "templateHash": "12288678464951870576"
+              "templateHash": "13653863196481715589"
             }
           },
           "parameters": {
@@ -368,7 +368,7 @@
               "kind": "AzurePowerShell",
               "properties": {
                 "azPowerShellVersion": "10.0",
-                "primaryScriptUri": "[format('{0}Deployment/scripts/copy_kb_files.sh', parameters('baseUrl'))]",
+                "primaryScriptUri": "[format('{0}Deployment/scripts/copy_kb_files.ps1', parameters('baseUrl'))]",
                 "timeout": "PT1H",
                 "cleanupPreference": "OnSuccess",
                 "retentionInterval": "PT1H"
