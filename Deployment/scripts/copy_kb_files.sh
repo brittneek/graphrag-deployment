@@ -25,5 +25,7 @@ source /tmp/venv/bin/activate
 # pip install graphrag==0.3.6
 pip install -r https://raw.githubusercontent.com/brittneek/graphrag-deployment/main/Deployment/scripts/graphrag-requirements.txt
 # python -m graphrag.index --root ./ --verbose
+echo "open graphrag folder"
 cd graphrag
+echo "run pipeline_index.py"
 python pipeline_index.py

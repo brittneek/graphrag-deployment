@@ -17,6 +17,7 @@ from graphrag.index.progress.load_progress_reporter import load_progress_reporte
 
 
 def building_index():
+    print("build index")
     # Assuming these arguments are similar to what argparse would receive
     root_dir = "./"
     config_path = "./settings.yaml"
