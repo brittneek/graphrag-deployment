@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.31.92.45157",
-      "templateHash": "18436991061985933565"
+      "templateHash": "10303757807876986029"
     }
   },
   "parameters": {
@@ -326,7 +326,7 @@
             "_generator": {
               "name": "bicep",
               "version": "0.31.92.45157",
-              "templateHash": "17619248311404604534"
+              "templateHash": "3702222215351084152"
             }
           },
           "parameters": {
@@ -367,8 +367,9 @@
               },
               "kind": "AzureCLI",
               "properties": {
-                "azCliVersion": "2.52.0",
+                "azCliVersion": "2.60.0",
                 "primaryScriptUri": "[format('{0}Deployment/scripts/copy_kb_files.sh', parameters('baseUrl'))]",
+                "arguments": "[format('{0}', parameters('baseUrl'))]",
                 "containerSettings": {
                   "imageName": "mcr.microsoft.com/devcontainers/python:3.10-bullseye"
                 },
