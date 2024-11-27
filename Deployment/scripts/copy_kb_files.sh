@@ -2,7 +2,10 @@
 echo "installing required libraries"
 echo "Current working directory: $(pwd)"
 python --version
-python -m venv venv
-source venv/bin/activate
+# Create the virtual environment in a writable directory
+python3 -m venv /tmp/venv
+
+# Activate the virtual environment
+source /tmp/venv/bin/activate
 # pip install graphrag==0.3.6
 # pip install -r https://raw.githubusercontent.com/brittneek/graphrag-deployment/main/Deployment/scripts/graphrag-requirements.txt
