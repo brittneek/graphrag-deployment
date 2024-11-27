@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.31.92.45157",
-      "templateHash": "2135079882118016079"
+      "templateHash": "18436991061985933565"
     }
   },
   "parameters": {
@@ -326,7 +326,7 @@
             "_generator": {
               "name": "bicep",
               "version": "0.31.92.45157",
-              "templateHash": "6059919659074800222"
+              "templateHash": "17619248311404604534"
             }
           },
           "parameters": {
@@ -369,6 +369,9 @@
               "properties": {
                 "azCliVersion": "2.52.0",
                 "primaryScriptUri": "[format('{0}Deployment/scripts/copy_kb_files.sh', parameters('baseUrl'))]",
+                "containerSettings": {
+                  "imageName": "mcr.microsoft.com/devcontainers/python:3.10-bullseye"
+                },
                 "timeout": "PT1H",
                 "cleanupPreference": "OnSuccess",
                 "retentionInterval": "PT1H"
