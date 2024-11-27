@@ -25,7 +25,7 @@ python3 -m venv /tmp/venv
 source /tmp/venv/bin/activate
 
 echo "install lancedb"
-pip install lancedb==0.13.0
+pip install lancedb
 # pip install graphrag==0.3.6
 # pip install -r https://raw.githubusercontent.com/brittneek/graphrag-deployment/main/Deployment/scripts/graphrag-requirements.txt
 # python -m graphrag.index --root ./ --verbose
