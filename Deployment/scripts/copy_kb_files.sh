@@ -19,15 +19,19 @@ python --version
 
 echo "installing required libraries"
 echo "Current working directory: $(pwd)"
+echo "python version:"
 python --version
 # Create the virtual environment in a writable directory
 python3 -m venv /tmp/venv
 
-# Activate the virtual environment
+echo "Activate the virtual environment"
 source /tmp/venv/bin/activate
 
 # echo "install lancedb"
 # pip install lancedb
+
+echo "python version in env:"
+python --version
 
 pip install graphrag==0.3.6
 # pip install -r https://raw.githubusercontent.com/brittneek/graphrag-deployment/main/Deployment/scripts/graphrag-requirements.txt
