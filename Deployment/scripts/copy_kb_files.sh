@@ -8,7 +8,7 @@
 # ln -sf /usr/bin/python3.10 /usr/bin/python
 # ln -sf /usr/bin/python3.10 /usr/bin/python3
 
-pip install --upgrade pip
+# pip install --upgrade pip
 
 # # Verify Python version
 echo "Python version:"
@@ -33,8 +33,14 @@ source /tmp/venv/bin/activate
 echo "python version in env:"
 python --version
 
-echo "install lancedb"
-pip install lancedb==0.16.0
+echo "pip upgrade"
+python -m pip install --upgrade pip
+
+echo "pip outdated"
+pip list --outdated
+
+# echo "install lancedb"
+# pip install lancedb==0.16.0
 
 
 # pip install graphrag==0.3.6
