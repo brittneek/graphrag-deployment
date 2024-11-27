@@ -83,15 +83,12 @@ resource copy_demo_Data1 'Microsoft.Resources/deploymentScripts@2023-08-01' = {
   }
   kind: 'AzureCLI'
   properties: {
-    azCliVersion: '2.60.0' // Ensure compatibility with your script
-    primaryScriptUri: '${baseUrl}Deployment/scripts/copy_kb_files.sh'
-    arguments: '${baseUrl}'
-    containerSettings: {
-      imageName: 'mcr.microsoft.com/devcontainers/python:3.10-bullseye'
-    }
-    timeout: 'PT1H'
-    cleanupPreference: 'OnSuccess'
-    retentionInterval: 'PT1H'
+    azCliVersion: '2.52.0'
+    primaryScriptUri: '${baseUrl}Deployment/scripts/copy_kb_files.sh' 
+    arguments: '${baseUrl}' // Specify any arguments for the script
+    timeout: 'PT1H' // Specify the desired timeout duration
+    retentionInterval: 'PT1H' // Specify the desired retention interval
+    cleanupPreference:'OnSuccess'
   }
 }
 

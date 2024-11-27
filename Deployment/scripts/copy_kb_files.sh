@@ -15,36 +15,36 @@ requirementFileUrl=${baseUrl}"Deployment/scripts/index_scripts/requirements.txt"
 
 # pip install --upgrade pip
 
-# # Verify Python version
-echo "Python version:"
-python --version
+# # # Verify Python version
+# echo "Python version:"
+# python --version
 
 # # Install pip for Python 3.10
 # curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10
 
-echo "installing required libraries"
-echo "Current working directory: $(pwd)"
-echo "python version:"
-python --version
-# Create the virtual environment in a writable directory
-python3 -m venv /tmp/venv
+# echo "installing required libraries"
+# echo "Current working directory: $(pwd)"
+# echo "python version:"
+# python --version
+# # Create the virtual environment in a writable directory
+# python3 -m venv /tmp/venv
 
-echo "Activate the virtual environment"
-source /tmp/venv/bin/activate
+# echo "Activate the virtual environment"
+# source /tmp/venv/bin/activate
 
-# echo "install lancedb"
-# pip install lancedb
+# # echo "install lancedb"
+# # pip install lancedb
 
-echo "python version in env:"
-python --version
+# echo "python version in env:"
+# python --version
 
-echo "pip upgrade"
-python -m pip install --upgrade pip
+# echo "pip upgrade"
+# python -m pip install --upgrade pip
 
-echo "pip outdated"
-pip list --outdated
+# echo "pip outdated"
+# pip list --outdated
 
-curl --output "process_data.py" ${baseUrl}"Deployment/scripts/graphrag/pipeline_index.py"
+curl --output "pipeline_index.py" ${baseUrl}"Deployment/scripts/graphrag/pipeline_index.py"
 
 
 
