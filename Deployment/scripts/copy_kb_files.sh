@@ -8,6 +8,8 @@
 # ln -sf /usr/bin/python3.10 /usr/bin/python
 # ln -sf /usr/bin/python3.10 /usr/bin/python3
 
+pip install --upgrade pip
+
 # # Verify Python version
 echo "Python version:"
 python --version
@@ -26,6 +28,8 @@ source /tmp/venv/bin/activate
 
 echo "install lancedb"
 pip install lancedb
+
+pip install --upgrade pip
 # pip install graphrag==0.3.6
 # pip install -r https://raw.githubusercontent.com/brittneek/graphrag-deployment/main/Deployment/scripts/graphrag-requirements.txt
 # python -m graphrag.index --root ./ --verbose
