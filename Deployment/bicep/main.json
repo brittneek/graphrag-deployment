@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.31.92.45157",
-      "templateHash": "7300039488026437523"
+      "templateHash": "695344768202012320"
     }
   },
   "parameters": {
@@ -326,7 +326,7 @@
             "_generator": {
               "name": "bicep",
               "version": "0.31.92.45157",
-              "templateHash": "1928651245228941954"
+              "templateHash": "12288678464951870576"
             }
           },
           "parameters": {
@@ -355,22 +355,23 @@
           "resources": [
             {
               "type": "Microsoft.Resources/deploymentScripts",
-              "apiVersion": "2020-10-01",
-              "name": "copy_demo_Data",
-              "kind": "AzureCLI",
+              "apiVersion": "2023-08-01",
+              "name": "copy_demo_Data1",
               "location": "[parameters('solutionLocation')]",
+              "tags": {},
               "identity": {
                 "type": "UserAssigned",
                 "userAssignedIdentities": {
                   "[format('{0}', parameters('identity'))]": {}
                 }
               },
+              "kind": "AzurePowerShell",
               "properties": {
-                "azCliVersion": "2.52.0",
+                "azPowerShellVersion": "10.0",
                 "primaryScriptUri": "[format('{0}Deployment/scripts/copy_kb_files.sh', parameters('baseUrl'))]",
                 "timeout": "PT1H",
-                "retentionInterval": "PT1H",
-                "cleanupPreference": "OnSuccess"
+                "cleanupPreference": "OnSuccess",
+                "retentionInterval": "PT1H"
               }
             }
           ]

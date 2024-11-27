@@ -47,19 +47,19 @@ resource copy_demo_Data1 'Microsoft.Resources/deploymentScripts@2023-08-01' = {
   }
   kind: 'AzurePowerShell'
   properties: {
-    storageAccountSettings: {
-      storageAccountName: '<storage-account-name>'
-      storageAccountKey: '<storage-account-key>'
-    }
-    containerSettings: {
-      containerGroupName: '<container-group-name>'
-      subnetIds: [
-        {
-          id: '<subnet-id>'
-        }
-      ]
-    }
-    environmentVariables: []
+    // storageAccountSettings: {
+    //   storageAccountName: '<storage-account-name>'
+    //   storageAccountKey: '<storage-account-key>'
+    // }
+    // containerSettings: {
+    //   containerGroupName: '<container-group-name>'
+    //   subnetIds: [
+    //     {
+    //       id: '<subnet-id>'
+    //     }
+    //   ]
+    // }
+    // environmentVariables: []
     azPowerShellVersion: '10.0'
     //arguments: '<script-arguments>'
     primaryScriptUri: '${baseUrl}Deployment/scripts/copy_kb_files.sh' // deploy-azure-synapse-pipelines.sh
