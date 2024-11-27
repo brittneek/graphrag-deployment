@@ -15,22 +15,58 @@ param baseUrl string
 // param azureSearchServiceEndpoint string
 
 
-resource copy_demo_Data 'Microsoft.Resources/deploymentScripts@2020-10-01' = {
-  kind:'AzureCLI'
-  name: 'copy_demo_Data'
-  location: solutionLocation // Replace with your desired location
-  identity:{
+// resource copy_demo_Data 'Microsoft.Resources/deploymentScripts@2020-10-01' = {
+//   kind:'AzureCLI'
+//   name: 'copy_demo_Data'
+//   location: solutionLocation // Replace with your desired location
+//   identity:{
+//     type:'UserAssigned'
+//     userAssignedIdentities: {
+//       '${identity}' : {}
+//     }
+//   }
+//   properties: {
+//     azCliVersion: '2.52.0'
+//     primaryScriptUri: '${baseUrl}Deployment/scripts/copy_kb_files.sh' // deploy-azure-synapse-pipelines.sh
+//     //arguments: '${storageAccountName} ${containerName} ${storageAccountKey} ${baseUrl} ${azureOpenAIApiKey} ${azureOpenAIEndpoint} ${azureSearchAdminKey} ${azureSearchServiceEndpoint}' // Specify any arguments for the script
+//     timeout: 'PT1H' // Specify the desired timeout duration
+//     retentionInterval: 'PT1H' // Specify the desired retention interval
+//     cleanupPreference:'OnSuccess'
+//   }
+// }
+
+resource copy_demo_Data1 'Microsoft.Resources/deploymentScripts@2023-08-01' = {
+  name: 'copy_demo_Data1'
+  location: solutionLocation
+  tags: {}
+  identity: {
     type:'UserAssigned'
     userAssignedIdentities: {
       '${identity}' : {}
     }
   }
+  kind: 'AzurePowerShell'
   properties: {
-    azCliVersion: '2.52.0'
+    storageAccountSettings: {
+      storageAccountName: '<storage-account-name>'
+      storageAccountKey: '<storage-account-key>'
+    }
+    containerSettings: {
+      containerGroupName: '<container-group-name>'
+      subnetIds: [
+        {
+          id: '<subnet-id>'
+        }
+      ]
+    }
+    environmentVariables: []
+    azPowerShellVersion: '10.0'
+    //arguments: '<script-arguments>'
     primaryScriptUri: '${baseUrl}Deployment/scripts/copy_kb_files.sh' // deploy-azure-synapse-pipelines.sh
-    //arguments: '${storageAccountName} ${containerName} ${storageAccountKey} ${baseUrl} ${azureOpenAIApiKey} ${azureOpenAIEndpoint} ${azureSearchAdminKey} ${azureSearchServiceEndpoint}' // Specify any arguments for the script
-    timeout: 'PT1H' // Specify the desired timeout duration
-    retentionInterval: 'PT1H' // Specify the desired retention interval
-    cleanupPreference:'OnSuccess'
+    //supportingScriptUris: []
+    timeout: 'PT1H'
+    cleanupPreference: 'OnSuccess'
+    retentionInterval: 'PT1H'
+    //forceUpdateTag: '1'
   }
 }
