@@ -35,38 +35,58 @@ param baseUrl string
 //   }
 // }
 
+// resource copy_demo_Data1 'Microsoft.Resources/deploymentScripts@2023-08-01' = {
+//   name: 'copy_demo_Data1'
+//   location: solutionLocation
+//   tags: {}
+//   identity: {
+//     type:'UserAssigned'
+//     userAssignedIdentities: {
+//       '${identity}' : {}
+//     }
+//   }
+//   kind: 'AzurePowerShell'
+//   properties: {
+//     // storageAccountSettings: {
+//     //   storageAccountName: '<storage-account-name>'
+//     //   storageAccountKey: '<storage-account-key>'
+//     // }
+//     // containerSettings: {
+//     //   containerGroupName: '<container-group-name>'
+//     //   subnetIds: [
+//     //     {
+//     //       id: '<subnet-id>'
+//     //     }
+//     //   ]
+//     // }
+//     // environmentVariables: []
+//     azPowerShellVersion: '10.0'
+//     //arguments: '<script-arguments>'
+//     primaryScriptUri: '${baseUrl}Deployment/scripts/copy_kb_files.ps1' // deploy-azure-synapse-pipelines.sh
+//     //supportingScriptUris: []
+//     timeout: 'PT1H'
+//     cleanupPreference: 'OnSuccess'
+//     retentionInterval: 'PT1H'
+//     //forceUpdateTag: '1'
+//   }
+// }
+
 resource copy_demo_Data1 'Microsoft.Resources/deploymentScripts@2023-08-01' = {
   name: 'copy_demo_Data1'
   location: solutionLocation
   tags: {}
   identity: {
-    type:'UserAssigned'
+    type: 'UserAssigned'
     userAssignedIdentities: {
-      '${identity}' : {}
+      '${identity}': {}
     }
   }
-  kind: 'AzurePowerShell'
+  kind: 'AzureCLI'
   properties: {
-    // storageAccountSettings: {
-    //   storageAccountName: '<storage-account-name>'
-    //   storageAccountKey: '<storage-account-key>'
-    // }
-    // containerSettings: {
-    //   containerGroupName: '<container-group-name>'
-    //   subnetIds: [
-    //     {
-    //       id: '<subnet-id>'
-    //     }
-    //   ]
-    // }
-    // environmentVariables: []
-    azPowerShellVersion: '10.0'
-    //arguments: '<script-arguments>'
-    primaryScriptUri: '${baseUrl}Deployment/scripts/copy_kb_files.ps1' // deploy-azure-synapse-pipelines.sh
-    //supportingScriptUris: []
+    azCliVersion: '2.40.0' // Ensure compatibility with your script
+    primaryScriptUri: '${baseUrl}Deployment/scripts/copy_kb_files.sh'
     timeout: 'PT1H'
     cleanupPreference: 'OnSuccess'
     retentionInterval: 'PT1H'
-    //forceUpdateTag: '1'
   }
 }
