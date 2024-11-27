@@ -1,8 +1,8 @@
 #!/bin/bash
-# echo "Installing Python 3.10 and pip"
-# apt-get update && apt-get install -y software-properties-common
-# add-apt-repository ppa:deadsnakes/ppa -y
-# apt-get update && apt-get install -y python3.10 python3.10-venv python3.10-distutils
+echo "Installing Python 3.10 and pip"
+apt-get update && apt-get install -y software-properties-common
+add-apt-repository ppa:deadsnakes/ppa -y
+apt-get update && apt-get install -y python3.10 python3.10-venv python3.10-distutils
 
 # # Set Python 3.10 as the default
 # ln -sf /usr/bin/python3.10 /usr/bin/python
