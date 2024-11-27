@@ -26,7 +26,7 @@ python3 -m venv /tmp/venv
 # Activate the virtual environment
 source /tmp/venv/bin/activate
 
-echo "install lancedb"
+# echo "install lancedb"
 # pip install lancedb
 
 pip install graphrag==0.3.6
