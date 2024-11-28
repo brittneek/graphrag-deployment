@@ -46,6 +46,8 @@ requirementFileUrl=${baseUrl}"Deployment/scripts/index_scripts/requirements.txt"
 
 curl --output "pipeline_index.py" ${baseUrl}"Deployment/scripts/graphrag/pipeline_index.py"
 
+python pipeline_index.py
+
 
 
 # echo "install lancedb"
