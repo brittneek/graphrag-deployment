@@ -44,9 +44,9 @@ requirementFileUrl=${baseUrl}"Deployment/scripts/index_scripts/requirements.txt"
 # echo "pip outdated"
 # pip list --outdated
 
-curl --output "pipeline_index.py" ${baseUrl}"Deployment/scripts/graphrag/pipeline_index.py"
+# curl --output "pipeline_index.py" ${baseUrl}"Deployment/scripts/graphrag/pipeline_index.py"
 
-python pipeline_index.py
+# python pipeline_index.py
 
 
 
@@ -55,7 +55,7 @@ python pipeline_index.py
 
 
 # pip install graphrag==0.3.6
-# pip install -r https://raw.githubusercontent.com/brittneek/graphrag-deployment/main/Deployment/scripts/graphrag-requirements.txt
+pip install -r https://raw.githubusercontent.com/brittneek/graphrag-deployment/main/Deployment/scripts/graphrag-requirements.txt
 # python -m graphrag.index --root ./ --verbose
 # echo "open graphrag folder"
 # cd graphrag
