@@ -38,6 +38,8 @@ requirementFileUrl=${baseUrl}"Deployment/scripts/index_scripts/requirements.txt"
 echo "python version in env:"
 python --version
 
+python -m venv tutorial-env
+
 echo "pip upgrade"
 python -m pip install --upgrade pip
 
