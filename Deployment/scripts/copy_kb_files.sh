@@ -35,8 +35,8 @@ requirementFileUrl=${baseUrl}"Deployment/scripts/index_scripts/requirements.txt"
 # # echo "install lancedb"
 # # pip install lancedb
 
-# echo "python version in env:"
-# python --version
+echo "python version in env:"
+python --version
 
 echo "pip upgrade"
 python -m pip install --upgrade pip
