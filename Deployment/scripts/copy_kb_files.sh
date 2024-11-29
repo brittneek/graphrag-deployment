@@ -38,21 +38,10 @@ requirementFileUrl=${baseUrl}"Deployment/scripts/index_scripts/requirements.txt"
 echo "python version in env before environment:"
 python --version
 
-# python -m venv tutorial-env
-# source tutorial-env/bin/activate
-
-pip install virtualenv
-virtualenv tutorial-env
-source tutorial-env/bin/activate
-
-df -h # Check disk space
-ls -ld /mnt/azscripts/azscriptinput
+python -m venv tutorial-env
 
 echo "pip upgrade"
 python -m pip install --upgrade pip
-
-echo "python version in environment:"
-python --version
 
 # echo "pip outdated"
 # pip list --outdated
