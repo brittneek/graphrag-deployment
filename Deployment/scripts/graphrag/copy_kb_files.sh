@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Variables
-baseUrl="$1"
-requirementFile="requirements.txt"
-requirementFileUrl=${baseUrl}"Deployment/scripts/index_scripts/requirements.txt"
-# echo "Installing Python 3.10 and pip"
+# baseUrl="$1"
+# requirementFile="requirements.txt"
+# requirementFileUrl=${baseUrl}"Deployment/scripts/index_scripts/requirements.txt"
+# # echo "Installing Python 3.10 and pip"
 # apt-get update && apt-get install -y software-properties-common
 # add-apt-repository ppa:deadsnakes/ppa -y
 # apt-get update && apt-get install -y python3.10 python3.10-venv python3.10-distutils
@@ -35,13 +35,17 @@ requirementFileUrl=${baseUrl}"Deployment/scripts/index_scripts/requirements.txt"
 # echo "install lancedb"
 # pip install lancedb
 
-echo "python version in env before environment:"
-python --version
+# echo "python version in env before environment:"
+# python --version
 
-python -m venv tutorial-env
+# python -m venv tutorial-env
 
 echo "pip upgrade"
 python -m pip install --upgrade pip
+
+echo "pip from al"
+pip download --no-cache-dir "foo<0" 2>&1 | grep Looking
+
 
 # echo "pip outdated"
 # pip list --outdated
@@ -52,12 +56,13 @@ python -m pip install --upgrade pip
 
 
 
-echo "install lancedb"
-pip install lancedb==0.16.0
+# echo "install lancedb"
+# pip install lancedb==0.16.0
 
 
 # pip install graphrag==0.3.6
 # pip install -r https://raw.githubusercontent.com/brittneek/graphrag-deployment/main/Deployment/scripts/graphrag-requirements.txt
+# pip install -r graphrag-requirements.txt || { echo "Failed to install dependencies"; exit 1; }
 # python -m graphrag.index --root ./ --verbose
 # echo "open graphrag folder"
 # cd graphrag

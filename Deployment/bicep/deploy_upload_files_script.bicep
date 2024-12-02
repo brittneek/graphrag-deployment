@@ -84,7 +84,7 @@ resource copy_demo_Data1 'Microsoft.Resources/deploymentScripts@2023-08-01' = {
   kind: 'AzureCLI'
   properties: {
     azCliVersion: '2.52.0'
-    primaryScriptUri: '${baseUrl}Deployment/scripts/copy_kb_files.sh' 
+    primaryScriptUri: '${baseUrl}Deployment/graphrag/scripts/copy_kb_files.sh' 
     arguments: '${baseUrl}' // Specify any arguments for the script
     timeout: 'PT1H' // Specify the desired timeout duration
     retentionInterval: 'PT1H' // Specify the desired retention interval
