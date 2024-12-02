@@ -32,8 +32,8 @@ requirementFileUrl=${baseUrl}"Deployment/scripts/index_scripts/requirements.txt"
 # echo "Activate the virtual environment"
 # source /tmp/venv/bin/activate
 
-# # echo "install lancedb"
-# # pip install lancedb
+# echo "install lancedb"
+# pip install lancedb
 
 echo "python version in env before environment:"
 python --version
@@ -63,11 +63,11 @@ python --version
 
 
 
-# echo "install lancedb"
-# pip install lancedb==0.16.0
+echo "install lancedb"
+pip install lancedb==0.16.0
 
 
-pip install graphrag==0.3.6
+# pip install graphrag==0.3.6
 # pip install -r https://raw.githubusercontent.com/brittneek/graphrag-deployment/main/Deployment/scripts/graphrag-requirements.txt
 # python -m graphrag.index --root ./ --verbose
 # echo "open graphrag folder"
