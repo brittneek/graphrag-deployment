@@ -35,7 +35,7 @@ requirementFileUrl=${baseUrl}"Deployment/scripts/index_scripts/requirements.txt"
 # # echo "install lancedb"
 # # pip install lancedb
 
-echo "python version in env:"
+echo "python version in env before environment:"
 python --version
 
 python -m venv tutorial-env
@@ -43,6 +43,9 @@ source tutorial-env/bin/activate
 
 echo "pip upgrade"
 python -m pip install --upgrade pip
+
+echo "python version in environment:
+python --version
 
 # echo "pip outdated"
 # pip list --outdated
