@@ -46,12 +46,12 @@ virtualenv tutorial-env
 source tutorial-env/bin/activate
 
 df -h # Check disk space
-ls -ld /mnt/azscripts/azscriptinput # Check directory permissions
+ls -ld /mnt/azscripts/azscriptinput
 
 echo "pip upgrade"
 python -m pip install --upgrade pip
 
-echo "python version in environment:
+echo "python version in environment:"
 python --version
 
 # echo "pip outdated"
