@@ -39,6 +39,7 @@ echo "python version in env:"
 python --version
 
 python -m venv tutorial-env
+source tutorial-env/bin/activate
 
 echo "pip upgrade"
 python -m pip install --upgrade pip
@@ -57,7 +58,7 @@ python -m pip install --upgrade pip
 
 
 # pip install graphrag==0.3.6
-pip install -r https://raw.githubusercontent.com/brittneek/graphrag-deployment/main/Deployment/scripts/graphrag-requirements.txt
+# pip install -r https://raw.githubusercontent.com/brittneek/graphrag-deployment/main/Deployment/scripts/graphrag-requirements.txt
 # python -m graphrag.index --root ./ --verbose
 # echo "open graphrag folder"
 # cd graphrag
